@@ -3,15 +3,8 @@ import PersonaSelector from './components/PersonaSelector/PersonaSelector'
 import ChatWindow from './components/ChatWindow/ChatWindow'
 import MessageInput from './components/MessageInput/MessageInput'
 import { PERSONAS } from './data/personas'
+import { sendMessage } from './api/chat'
 import styles from './App.module.scss'
-
-const mockSend = (text, persona) =>
-  new Promise(resolve =>
-    setTimeout(
-      () => resolve(`[${persona.name}] This is a mock response for: "${text}"`),
-      800
-    )
-  )
 
 export default function App() {
   const [selectedPersona, setSelectedPersona] = useState(PERSONAS[0])
@@ -24,11 +17,17 @@ export default function App() {
   }
 
   const handleSend = async (text) => {
-    setMessages(prev => [...prev, { role: 'user', content: text }])
+    const newMessages = [...messages, { role: 'user', content: text }]
+    setMessages(newMessages)
     setIsStreaming(true)
-    const reply = await mockSend(text, selectedPersona)
-    setMessages(prev => [...prev, { role: 'assistant', content: reply }])
-    setIsStreaming(false)
+    try {
+      const reply = await sendMessage(newMessages, selectedPersona.id)
+      setMessages(prev => [...prev, { role: 'assistant', content: reply }])
+    } catch (err) {
+      console.error(err)
+    } finally {
+      setIsStreaming(false)
+    }
   }
 
   return (
