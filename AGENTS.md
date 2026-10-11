@@ -14,6 +14,13 @@
 - `backend/venv/` — Python virtual environment (not committed)
 - `frontend/src/` — React components
 - `frontend/src/components/` — PersonaSelector, ChatWindow, MessageInput
+- `.plan/` — `000-backlog.md` is the task queue; `NNN-YYYY-MM-DD-*.md` are the plans
+
+## Planning
+- Every new feature or meaningful change gets a plan file in `.plan/`
+- Naming: `NNN-YYYY-MM-DD-<short-name>.md` (e.g. `001-2026-10-11-backend-setup.md`)
+- Each plan includes: Goal, Scope, Steps, Validation
+- Update `000-backlog.md` when adding or completing tasks
 
 ## Running the Project
 - Backend (port 5000): `cd backend` → `venv\Scripts\activate` → `python app.py`

@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(./backend/.env)",
+      "Bash(rm -rf *)",
+      "Bash(git push --force*)",
+      "Bash(git reset --hard*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/block-secret-file-access.js"
+          }
+        ]
+      }
+    ]
+  }
+}
