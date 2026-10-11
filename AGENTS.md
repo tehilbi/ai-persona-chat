@@ -3,6 +3,8 @@
 ## Security
 - Never commit or expose secrets (API keys, tokens, passwords).
 - `ANTHROPIC_API_KEY` lives in `backend/.env` only — never hardcode it.
+- In Python, read required env vars with `os.environ["KEY"]` not `os.getenv("KEY")` —
+  this raises a clear `KeyError` at startup if the key is missing, instead of failing later.
 
 ## Stack
 - **Backend**: Python 3 + Flask + Anthropic SDK (`claude-haiku-4-5`)
