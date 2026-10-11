@@ -24,7 +24,7 @@ export default function App() {
       const reply = await sendMessage(newMessages, selectedPersona.id)
       setMessages(prev => [...prev, { role: 'assistant', content: reply }])
     } catch (err) {
-      console.error(err)
+      setMessages(prev => [...prev, { role: 'error', content: `Error: ${err.message}` }])
     } finally {
       setIsStreaming(false)
     }
