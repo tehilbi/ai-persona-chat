@@ -1,4 +1,5 @@
 # AI Persona Chat
+![Persona Chat](docs/screenshot.png)
 
 A full-stack chat app powered by Claude API. Pick a persona — Tutor, Career Mentor, or Code Reviewer — and chat with Claude in that role. Responses stream token by token.
 
@@ -37,4 +38,3 @@ npm run dev
 - React frontend consuming SSE from a Flask backend
 
 
-![Persona Chat](docs/screenshot.png)
