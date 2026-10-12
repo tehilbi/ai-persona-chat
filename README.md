@@ -35,3 +35,6 @@ npm run dev
 - Streaming responses via `client.messages.stream()`
 - Multi-turn conversation history (stateless API, stateful client)
 - React frontend consuming SSE from a Flask backend
+
+
+![Persona Chat](docs/screenshot.png)
