@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import {useRef, useState} from 'react'
 import PersonaSelector from './components/PersonaSelector/PersonaSelector'
 import ChatWindow from './components/ChatWindow/ChatWindow'
 import MessageInput from './components/MessageInput/MessageInput'
@@ -11,17 +11,22 @@ export default function App() {
   const [messages, setMessages] = useState([])
   const [isStreaming, setIsStreaming] = useState(false)
 
+  const personaIdRef = useRef(selectedPersona.id)
+
   const handleSelectPersona = (persona) => {
     setSelectedPersona(persona)
+      personaIdRef.current = persona.id
     setMessages([])
   }
 
   const handleSend = async (text) => {
+    const selectedId = selectedPersona.id
     const newMessages = [...messages, { role: 'user', content: text }]
     setMessages(newMessages)
     setIsStreaming(true)
     try {
       const reply = await sendMessage(newMessages, selectedPersona.id)
+        if(selectedId !== personaIdRef.current) return;
       setMessages(prev => [...prev, { role: 'assistant', content: reply }])
     } catch (err) {
       setMessages(prev => [...prev, { role: 'error', content: `Error: ${err.message}` }])
