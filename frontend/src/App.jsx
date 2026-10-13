@@ -21,6 +21,7 @@ export default function App() {
   }
 
   const handleSend = async (text) => {
+    setError('')
     const selectedId = selectedPersona.id
     const newMessages = [...messages, { role: 'user', content: text }]
     setMessages(newMessages)
