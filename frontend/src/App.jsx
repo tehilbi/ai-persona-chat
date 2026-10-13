@@ -27,7 +27,7 @@ export default function App() {
     try {
       const reply = await sendMessage(newMessages, selectedPersona.id)
         if(selectedId !== personaIdRef.current) return;
-      setMessages(prev => [...prev, { role: 'assistant', content: reply }])
+      setMessages(prev => [...prev, { role: 'assistant', content: reply, persona: selectedPersona.name }])
     } catch (err) {
       setMessages(prev => [...prev, { role: 'error', content: `Error: ${err.message}` }])
     } finally {

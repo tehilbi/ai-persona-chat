@@ -8,6 +8,7 @@ export default function ChatWindow({ messages, isStreaming }) {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, isStreaming])
 
+  console.log(messages)
   return (
     <div className={styles.window}>
       {messages.length === 0 && !isStreaming && (
@@ -15,7 +16,7 @@ export default function ChatWindow({ messages, isStreaming }) {
       )}
       {messages.map((msg, i) => (
         <div key={i} className={`${styles.bubble} ${styles[msg.role]}`}>
-          {msg.content}
+          {msg.persona}: {msg.content}
         </div>
       ))}
       {isStreaming && (
