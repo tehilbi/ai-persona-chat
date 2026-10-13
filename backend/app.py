@@ -3,11 +3,14 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from anthropic import Anthropic
 from dotenv import load_dotenv
+import logging
 
 load_dotenv()
 
 app = Flask(__name__)
 CORS(app, origins=["http://localhost:5173", "http://localhost:5174"])
+
+logging.basicConfig(level=logging.INFO)
 
 api_key = os.environ["ANTHROPIC_API_KEY"]
 client = Anthropic()
@@ -47,6 +50,7 @@ def chat():
         messages=messages,
     )
 
+    logging.info("persona =%s input=%s output=%s",persona_id, response.usage.input_tokens , response.usage.output_tokens)
     return jsonify({"reply": response.content[0].text})
 
 
