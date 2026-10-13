@@ -29,6 +29,11 @@
     border-color: var(--accent);
     background: var(--accent-dim);
   }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
 }
 
 .emoji {

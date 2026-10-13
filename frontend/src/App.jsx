@@ -44,6 +44,7 @@ export default function App() {
         personas={PERSONAS}
         selected={selectedPersona}
         onSelect={handleSelectPersona}
+        disabled={isStreaming}
       />
       <ChatWindow messages={messages} isStreaming={isStreaming} />
       <MessageInput onSend={handleSend} disabled={isStreaming} />
