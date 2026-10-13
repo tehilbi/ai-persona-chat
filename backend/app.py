@@ -36,7 +36,7 @@ PERSONAS = {
 }
 
 def remove_older_messages(messages):
-    while (sum(len(m["content"]) for m in messages))>8000:
+    while (sum(len(m["content"]) for m in messages))>1000:
         messages = messages[2:]
     return messages
 
@@ -57,11 +57,13 @@ def chat():
 
     messages = remove_older_messages(messages)
 
+    clean_messages = [{"role": m["role"], "content": m["content"]} for m in messages]
+
     response = client.messages.create(
         model="claude-haiku-4-5",
         max_tokens=1000,
         system=PERSONAS[persona_id],
-        messages=messages,
+        messages=clean_messages,
     )
 
     logging.info("persona =%s input=%s output=%s",persona_id, response.usage.input_tokens , response.usage.output_tokens)
