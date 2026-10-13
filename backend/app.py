@@ -35,6 +35,10 @@ PERSONAS = {
     ),
 }
 
+def remove_older_messages(messages):
+    while (sum(len(m["content"]) for m in messages))>8000:
+        messages = messages[2:]
+    return messages
 
 @app.route("/api/chat", methods=["POST"])
 def chat():
@@ -50,6 +54,8 @@ def chat():
 
     if len(messages[-1]["content"]) > 2000 :
         return jsonify({"error": "The message length exceeds the limit"}), 400
+
+    messages = remove_older_messages(messages)
 
     response = client.messages.create(
         model="claude-haiku-4-5",
