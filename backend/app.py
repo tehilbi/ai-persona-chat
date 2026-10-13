@@ -44,6 +44,9 @@ def chat():
     if persona_id not in PERSONAS:
         return jsonify({"error": f"Unknown persona_id: '{persona_id}'"}), 400
 
+    if len(messages) > 2000 :
+        return jsonify({"error": "No messages provided"}), 400
+
     response = client.messages.create(
         model="claude-haiku-4-5",
         max_tokens=1000,
