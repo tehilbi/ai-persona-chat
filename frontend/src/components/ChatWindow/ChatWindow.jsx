@@ -15,7 +15,7 @@ export default function ChatWindow({ messages, isStreaming }) {
       )}
       {messages.map((msg, i) => (
         <div key={i} className={`${styles.bubble} ${styles[msg.role]}`}>
-          {msg.persona}: {msg.content}
+          {msg.persona && <span className={styles.persona}>{msg.persona + ':'}</span>} {msg.content}
         </div>
       ))}
       {isStreaming && (
