@@ -36,7 +36,7 @@ PERSONAS = {
 }
 
 def remove_older_messages(messages):
-    while (sum(len(m["content"]) for m in messages))>1000:
+    while (sum(len(m["content"]) for m in messages))>8000:
         messages = messages[2:]
     return messages
 
