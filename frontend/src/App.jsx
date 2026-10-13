@@ -15,6 +15,7 @@ export default function App() {
   const personaIdRef = useRef(selectedPersona.id)
 
   const handleSelectPersona = (persona) => {
+    setError('')
     setSelectedPersona(persona)
       personaIdRef.current = persona.id
     setMessages([])
