@@ -12,6 +12,7 @@ CORS(app, origins=["http://localhost:5173", "http://localhost:5174"])
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s", filename="server.log")
 logging.getLogger("werkzeug").setLevel(logging.WARNING)
+logging.getLogger("httpx").setLevel(logging.WARNING)
 
 api_key = os.environ["ANTHROPIC_API_KEY"]
 client = Anthropic(api_key=api_key)
@@ -43,9 +44,8 @@ def chat():
 
     if persona_id not in PERSONAS:
         return jsonify({"error": f"Unknown persona_id: '{persona_id}'"}), 400
-
-    if len(messages) > 2000 :
-        return jsonify({"error": "No messages provided"}), 400
+    if len(messages[-1]["content"]) > 2000 :
+        return jsonify({"error": "The message length exceeds the limit"}), 400
 
     response = client.messages.create(
         model="claude-haiku-4-5",

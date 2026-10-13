@@ -10,6 +10,7 @@ export default function App() {
   const [selectedPersona, setSelectedPersona] = useState(PERSONAS[0])
   const [messages, setMessages] = useState([])
   const [isStreaming, setIsStreaming] = useState(false)
+  const [error, setError] = useState('')
 
   const personaIdRef = useRef(selectedPersona.id)
 
@@ -29,7 +30,7 @@ export default function App() {
         if(selectedId !== personaIdRef.current) return;
       setMessages(prev => [...prev, { role: 'assistant', content: reply, persona: selectedPersona.name }])
     } catch (err) {
-      setMessages(prev => [...prev, { role: 'error', content: `Error: ${err.message}` }])
+      setError(err)
     } finally {
       setIsStreaming(false)
     }
@@ -47,6 +48,7 @@ export default function App() {
         disabled={isStreaming}
       />
       <ChatWindow messages={messages} isStreaming={isStreaming} />
+      {error && <div className={styles.error}>{error.message}</div>}
       <MessageInput onSend={handleSend} disabled={isStreaming} />
     </div>
   )
