@@ -14,7 +14,7 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(mess
 logging.getLogger("werkzeug").setLevel(logging.WARNING)
 
 api_key = os.environ["ANTHROPIC_API_KEY"]
-client = Anthropic()
+client = Anthropic(api_key=api_key)
 
 PERSONAS = {
     "tutor": (
