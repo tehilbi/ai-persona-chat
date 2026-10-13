@@ -10,7 +10,7 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app, origins=["http://localhost:5173", "http://localhost:5174"])
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s", filename="server.log")
 
 api_key = os.environ["ANTHROPIC_API_KEY"]
 client = Anthropic()
