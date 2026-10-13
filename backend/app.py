@@ -44,6 +44,10 @@ def chat():
 
     if persona_id not in PERSONAS:
         return jsonify({"error": f"Unknown persona_id: '{persona_id}'"}), 400
+
+    if len(messages) == 0:
+        return jsonify({"error": "No messages provided"}), 400
+
     if len(messages[-1]["content"]) > 2000 :
         return jsonify({"error": "The message length exceeds the limit"}), 400
 
