@@ -1,7 +1,7 @@
 # Plan: Backend + Frontend Connection
 
-Status: active
-Note: code is written. End-to-end validation is not yet run, and streaming is deferred. See backlog.
+Status: done
+Note: streaming is deferred to the backlog.
 Owner: Tehila
 Last updated: 2026-10-11
 
