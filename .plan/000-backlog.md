@@ -4,9 +4,14 @@ Format:
 - `- [ ] <title>`
 
 Current queue:
-- [ ] Backend setup — Flask server + Claude API + streaming
-- [ ] Frontend — PersonaSelector, ChatWindow, MessageInput components
-- [ ] Connect frontend to backend (fetch + streaming)
-- [ ] Styling — dark theme, responsive
+- [ ] Verify backend end-to-end: run `app.py` and send a message from the browser (plan 002 validation)
+- [ ] Verify frontend at 375px width, no horizontal scroll (plan 001 validation)
+- [ ] Backend streaming (deferred from plan 002, after end-to-end works)
+- [ ] Extract chat logic into a `useChat` hook (deferred, optional)
 
 ## DONE
+- [x] Frontend components: PersonaSelector, ChatWindow, MessageInput (plan 001; rendered by the App test)
+- [x] Persona knowledge documents: tutor, mentor, reviewer (plan 003)
+- [x] Persona switch during a pending reply: persona cards and input are disabled while waiting, and App ignores late replies as a backup (App test passes)
+- [x] Error bubble in the chat when a request fails
+- [x] Vitest and Testing Library set up, with one passing test
