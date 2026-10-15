@@ -68,8 +68,8 @@ def chat():
     response = client.messages.create(
         model="claude-haiku-4-5",
         max_tokens=1000,
-        cache_control={"type": "ephemeral"},
-        system=PERSONAS[persona_id],
+        system=[{"text":PERSONAS[persona_id],"type": "text"},{"text":docs[persona_id], "type": "text","cache_control": {
+            type:"ephemeral"}}],
         messages=clean_messages,
     )
 
