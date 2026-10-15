@@ -5,9 +5,31 @@
 
 A chat app powered by the Claude API. Pick a persona (Tutor, Career Mentor, or Code Reviewer) and chat with Claude in that role. Each response is returned as one complete message.
 
-## 2. Installation
+## 2. Prerequisites
 
-Backend:
+- Python 3.10 or newer (check with `python --version`)
+- Node.js with npm (check with `node --version` and `npm --version`)
+- An Anthropic API key
+
+Create `backend/.env` from the template.
+
+Windows (PowerShell or Command Prompt):
+
+```bash
+copy backend\.env.example backend\.env
+```
+
+macOS or Linux:
+
+```bash
+cp backend/.env.example backend/.env
+```
+
+Open `backend/.env` and set the `ANTHROPIC_API_KEY` line to your key. The file is git-ignored, so the key is never committed. If the key is missing, the server exits at startup with a clear error.
+
+## 3. Installation
+
+Backend, Windows:
 
 ```bash
 cd backend
@@ -16,20 +38,28 @@ venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-Frontend:
+Backend, macOS or Linux:
+
+```bash
+cd backend
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+Frontend, all systems:
 
 ```bash
 cd frontend
 npm install
 ```
 
-## 3. Running
+## 4. Running
 
-Start the backend (port 5000):
+Start the backend (port 5000). On Windows, run `venv\Scripts\activate`. On macOS or Linux, run `source venv/bin/activate`.
 
 ```bash
 cd backend
-venv\Scripts\activate
 python app.py
 ```
 
@@ -41,20 +71,6 @@ npm run dev
 ```
 
 Open `http://localhost:5173` in your browser.
-
-## 4. Prerequisites
-
-- Python 3.10 or newer
-- Node.js with npm
-- An Anthropic API key
-
-Create `backend/.env` from the template:
-
-```bash
-cp backend/.env.example backend/.env
-```
-
-In `backend/.env`, set the `ANTHROPIC_API_KEY` line to your key. The file is git-ignored, so the key is never committed. If the key is missing, the server exits at startup with a clear error.
 
 ## Prompt caching and token usage
 
