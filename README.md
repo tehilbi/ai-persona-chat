@@ -47,10 +47,10 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Frontend, all systems:
+Frontend, all systems (run from the `backend` folder, where the previous block ended):
 
 ```bash
-cd frontend
+cd ../frontend
 npm install
 ```
 
