@@ -17,6 +17,12 @@ logging.getLogger("httpx").setLevel(logging.WARNING)
 api_key = os.environ["ANTHROPIC_API_KEY"]
 client = Anthropic(api_key=api_key)
 
+docs = {}
+
+for name in ["tutor", "mentor", "reviewer"]:
+    with open(f"./personas/{name}.txt", "r") as f:
+        docs[name] = f.read()
+
 PERSONAS = {
     "tutor": (
         "You are a patient and encouraging teacher. "
@@ -62,6 +68,7 @@ def chat():
     response = client.messages.create(
         model="claude-haiku-4-5",
         max_tokens=1000,
+        cache_control={"type": "ephemeral"},
         system=PERSONAS[persona_id],
         messages=clean_messages,
     )
