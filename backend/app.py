@@ -73,7 +73,7 @@ def chat():
         messages=clean_messages,
     )
 
-    logging.info("persona =%s input=%s output=%s",persona_id, response.usage.input_tokens , response.usage.output_tokens)
+    logging.info("persona =%s input=%s output=%s cache_creation_input=%s cache_read=%s",persona_id, response.usage.input_tokens , response.usage.output_tokens, response.usage.cache_creation_input_tokens , response.usage.cache_read_input_tokens)
     return jsonify({"reply": response.content[0].text})
 
 
