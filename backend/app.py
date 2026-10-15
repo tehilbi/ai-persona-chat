@@ -20,7 +20,7 @@ client = Anthropic(api_key=api_key)
 docs = {}
 
 for name in ["tutor", "mentor", "reviewer"]:
-    with open(f"./personas/{name}.txt", "r") as f:
+    with open(f"./personas/{name}.md", "r") as f:
         docs[name] = f.read()
 
 PERSONAS = {
@@ -69,7 +69,7 @@ def chat():
         model="claude-haiku-4-5",
         max_tokens=1000,
         system=[{"text":PERSONAS[persona_id],"type": "text"},{"text":docs[persona_id], "type": "text","cache_control": {
-            type:"ephemeral"}}],
+            "type":"ephemeral"}}],
         messages=clean_messages,
     )
 
