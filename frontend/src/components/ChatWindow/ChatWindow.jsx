@@ -11,7 +11,7 @@ export default function ChatWindow({ messages, isStreaming }) {
   return (
     <div className={styles.window}>
       {messages.length === 0 && !isStreaming && (
-        <p className={styles.empty}>Select a persona and send a message to start chatting</p>
+        <p className={styles.empty}>Send a message to start chatting</p>
       )}
       {messages.map((msg, i) => (
         <div key={i} className={`${styles.bubble} ${styles[msg.role]}`}>

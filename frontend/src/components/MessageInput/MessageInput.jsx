@@ -24,7 +24,7 @@ export default function MessageInput({ onSend, disabled }) {
         value={text}
         onChange={e => setText(e.target.value)}
         onKeyDown={handleKeyDown}
-        placeholder="Type a message... (Enter to send, Shift+Enter for new line)"
+        placeholder="Type a message (Enter to send)"
         disabled={disabled}
         rows={1}
       />
