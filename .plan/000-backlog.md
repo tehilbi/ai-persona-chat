@@ -4,7 +4,6 @@ Format:
 - `- [ ] <title>`
 
 Current queue:
-- [ ] Verify backend end-to-end: run `app.py` and send a message from the browser (plan 002 validation)
 - [ ] Backend streaming (deferred from plan 002, after end-to-end works)
 - [ ] Extract chat logic into a `useChat` hook (deferred, optional)
 
@@ -15,3 +14,4 @@ Current queue:
 - [x] Error bubble in the chat when a request fails
 - [x] Vitest and Testing Library set up, with one passing test
 - [x] Frontend at 375px width: cards and Send button fit, no horizontal scroll (checked by Tehila)
+- [x] Backend end-to-end: messages sent from the browser return real Claude replies (checked by Tehila)
