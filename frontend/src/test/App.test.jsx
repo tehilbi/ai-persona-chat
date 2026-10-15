@@ -32,3 +32,28 @@ it('disables persona cards and input while a reply is pending, then re-enables t
   expect(screen.getByRole('button', { name: /Career Mentor/ })).toBeEnabled()
   expect(screen.getByRole('textbox')).toBeEnabled()
 })
+
+it('shows an error message, then re-enables the controls', async () => {
+  let reject
+  sendMessage.mockReturnValue(new Promise((_,r) => { reject = r }))
+
+  render(<App />)
+
+  const input = screen.getByRole('textbox')
+  fireEvent.change(input, { target: { value: 'Hello tutor' } })
+  fireEvent.click(screen.getByRole('button', { name: /send/i }))
+
+  const mentorCard = screen.getByRole('button', { name: /Career Mentor/ })
+  const tutorCard = screen.getByRole('button', { name: /Tutor/ })
+  expect(mentorCard).toBeDisabled()
+  expect(tutorCard).toBeDisabled()
+  expect(input).toBeDisabled()
+
+  await act(async () => {
+    reject(new Error('Network error'))
+  })
+
+  expect(screen.getByText('Network error')).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /Career Mentor/ })).toBeEnabled()
+  expect(screen.getByRole('textbox')).toBeEnabled()
+})
