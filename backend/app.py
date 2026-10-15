@@ -19,8 +19,7 @@ api_key = os.environ["ANTHROPIC_API_KEY"]
 client = Anthropic(api_key=api_key)
 
 docs = {}
-from pathlib import Path
-BASE_DIR = Path(_file_).parent
+BASE_DIR = Path(__file__).parent
 
 for name in ["tutor", "mentor", "reviewer"]:
     with open(BASE_DIR / "personas" / f"{name}.md", "r", encoding="utf-8") as f:
