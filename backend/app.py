@@ -1,9 +1,10 @@
 import os
+import logging
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from anthropic import Anthropic
 from dotenv import load_dotenv
-import logging
+from pathlib import Path
 
 load_dotenv()
 
@@ -18,9 +19,11 @@ api_key = os.environ["ANTHROPIC_API_KEY"]
 client = Anthropic(api_key=api_key)
 
 docs = {}
+from pathlib import Path
+BASE_DIR = Path(_file_).parent
 
 for name in ["tutor", "mentor", "reviewer"]:
-    with open(f"./personas/{name}.md", "r") as f:
+    with open(BASE_DIR / "personas" / f"{name}.md", "r", encoding="utf-8") as f:
         docs[name] = f.read()
 
 PERSONAS = {
