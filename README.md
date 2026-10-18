@@ -86,3 +86,10 @@ Every request is logged to `backend/server.log` with four token counts:
 - `cache_read`: tokens read from the cache on this request
 
 A healthy cache looks like this: the first request for a persona shows a non-zero `cache_creation_input`, and later requests for the same persona show a non-zero `cache_read` with a small `input`. If `cache_creation_input` and `cache_read` are both always `0`, the cached prefix is below the minimum length.
+
+
+## Design decisions
+
+- *Personas instead of a plain chat:* I chose personas to make the project more engaging and to add real logic on both the frontend and the backend, beyond just passing messages through.
+- *History trimming:* The model has no memory between messages, so the whole conversation is sent on every request. I limit the number of messages sent (the context), which keeps token usage and cost down and avoids hitting the model's limit.
+- *Known limitation:* The backend returns the full answer in one piece rather than streaming it. Streaming is the first thing I would improve.
